@@ -1,11 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
 //import { Button } from "reactstrap";
 
-export default function Customers() {
+export default function Employees() {
     return (
         <>
-            <h2>Customers</h2>
-            <Link to="/tickets/create">Add</Link>
+            <h2>Employees</h2>
+            <Link to="/employees/create">Add</Link>
             <Outlet />
         </>
     );
