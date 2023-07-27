@@ -8,3 +8,7 @@ export const getServiceTickets = () => {
 export const getServiceTicketById = (id) => {
     return fetch(`${_apiUrl}/${id}`).then((r) => r.json());
 }
+
+export const deleteServiceTicket = (id) => {
+    return fetch(`${_apiUrl}/${id}`, { method: "delete" }).then((r) => r.json());
+}

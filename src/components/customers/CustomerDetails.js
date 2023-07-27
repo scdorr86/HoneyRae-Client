@@ -20,28 +20,31 @@ export default function CustomerDetails() {
     }
 
     return (
-        <Table>
-            <tbody>
-                <tr>
-                    <th scope="row">Customer</th>
-                    <td>{customer.name}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Address</th>
-                    <td>{customer.address}</td>
-                </tr>
-                <th scope="row" colSpan="4">Customer Ticket Info</th>
-                <th scope="row" colSpan="4"></th>
-                {customer.serviceTickets.map((t) => (
-                    <tr key={`ticket-${t.id}`}>
-                        <th scope="row">{`Customer Ticket ${t.id}`}</th>
-                        <td>{`Description- ${t.description}`}</td>
-                        <td>{`Emergency-${t.emergency ? "yes" : "no"}`}</td>
-                        <td>{t.dateCompleted?.split("T")[0] || "Incomplete"}</td>
+        <>
+            <Table>
+                <tbody>
+                    <tr>
+                        <th scope="row">Customer</th>
+                        <td>{customer.name}</td>
                     </tr>
-                ))}
-
-            </tbody>
-        </Table>
+                    <tr>
+                        <th scope="row">Address</th>
+                        <td>{customer.address}</td>
+                    </tr>
+                </tbody>
+            </Table>
+            <h6 scope="row" colSpan="2">Customer Ticket Info</h6>
+            {customer.serviceTickets.map((t) => (
+                <>
+                    <h6>{`Ticket-${t.id}`}</h6>
+                        <ul>
+                            <li>{`Customer Ticket ${t.id}`}</li>
+                            <li>{`Description- ${t.description}`}</li>
+                            <li>{`Emergency-${t.emergency ? "yes" : "no"}`}</li>
+                            <li>{t.dateCompleted?.split("T")[0] || "Incomplete"}</li>
+                        </ul>
+                </>
+            ))}
+        </>
     );
 }
