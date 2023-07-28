@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { getServiceTickets } from "../../data/serviceTicketsData";
 import { Link } from "react-router-dom";
+import { DeleteTicket } from "./DeleteTicket";
 
 export default function TicketsList() {
   const [tickets, setTickets] = useState([]);
@@ -9,6 +10,7 @@ export default function TicketsList() {
   useEffect(() => {
     getServiceTickets().then(setTickets);
   }, []);
+
 
   return (
     <Table>
@@ -29,7 +31,10 @@ export default function TicketsList() {
             <td>{t.emergency ? "yes" : "no"}</td>
             <td>{t.dateCompleted?.split("T")[0] || "Incomplete"}</td>
             <td>
-              <Link to={`${t.id}`}>Details</Link>
+                <Link to={`${t.id}`}>Details</Link>
+            </td>
+            <td>
+                    <DeleteTicket ticketObj={t} setTickets={setTickets}></DeleteTicket>
             </td>
           </tr>
         ))}
