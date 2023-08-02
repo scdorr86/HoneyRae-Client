@@ -14,5 +14,36 @@ export const deleteServiceTicket = (id) => {
 }
 
 export const createServiceTicket = (ticketPayload) => {
-    return fetch(_apiUrl, { method: "put" }).then((r) => r.json());
+    return fetch(_apiUrl, { method: "post", body: JSON.stringify(ticketPayload)}).then((r) => r.json());
 }
+
+export const completeServiceTicket = (ticketPayload) => {
+    return fetch(`${ _apiUrl }/${ ticketPayload.id }`, { method: "put" }).then((r) => r.json());
+}
+
+export const createTicket = (payload) => new Promise((resolve, reject) => {
+    fetch(_apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    })
+        .then((response) => response.json())
+        .then((data) => resolve(data))
+        .catch(reject);
+});
+
+export const completeTicket = (payload) => new Promise((resolve, reject) => {
+    fetch(`${_apiUrl}/${payload.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    })
+        .then((response) => response.json())
+        .then(resolve)
+        .catch(reject);
+});
+

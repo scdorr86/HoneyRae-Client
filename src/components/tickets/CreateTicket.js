@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { Form, Label, Input, FormGroup } from "reactstrap";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
-import { createServiceTicket } from "../../data/serviceTicketsData";
+import { createServiceTicket, createTicket } from "../../data/serviceTicketsData";
 import { getEmployees } from "../../data/employeeData";
 import { getCustomers } from "../../data/customerData";
 
 
 
 const initialState = {
-    CustomerId: null,
-    EmployeeId: null,
+    CustomerId: 0,
+    EmployeeId: 0,
     Description: '',
     Emergency: false,
 }
@@ -37,10 +37,9 @@ export default function CreateTicket() {
         const payload = {
             ...formInput
         };
-        createServiceTicket(payload).then(({ name }) => {
-            <Link to="/TicketsList"></Link>
-            setFormInput(initialState);
-        });
+        createTicket(payload).then(
+            setFormInput(initialState)
+        );
     };
 
     return (
@@ -50,13 +49,13 @@ export default function CreateTicket() {
             <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label for="Customer Id">Customer Id</Label>
-                    <Input placeholder="customer Id" type="select" name="CustomerId" value={formInput.CustomerId} onChange={handleChange}>
+                    <Input placeholder="customer Id" type="select" name="CustomerId" value={Number(formInput.CustomerId)} onChange={handleChange}>
 
                         {customers.map((customer) => {
                             console.log("this is cust", customer)
                             return (
-                                <option key={customer.id} value={customer.id}>
-                                    {customer.name}
+                                <option key={customer.id} value={parseInt(customer.id)}>
+                                    ID: {customer.id} Name: {customer.name}
                                 </option>                           
                             );
                         })}             
@@ -77,7 +76,28 @@ export default function CreateTicket() {
 
                     </Input>
                 </FormGroup>
-                <Button className="btn btn-dark" type="submit">Submit</Button>
+
+                <FormGroup>
+                    <Label for="Description">Description</Label>
+                    <Input placeholder="Description" type="text" name="Description" value={formInput.Description} onChange={handleChange}></Input>
+                </FormGroup>
+
+                {/*<FormGroup>*/}
+                {/*    <Label check for="Emergency">Emergency</Label>*/}
+                {/*    <Input type="checkbox" name="Emergency" value={formInput.Emergency} onChange={handleChange}></Input>*/}
+                {/*</FormGroup>*/}
+
+                <FormGroup>
+                    <Label for="Emergency">Emergency Id</Label>
+                    <Input placeholder="Emergency" type="select" name="Emergency" value={formInput.Emergency} onChange={handleChange}>
+                                            
+                        <option key="true" value={true} >Yes</option>
+                        <option key="false" value={false} >No</option>
+
+                    </Input>
+                </FormGroup>
+
+                <Button className="btn btn-dark" type="submit" onSubmit={handleSubmit}>Submit</Button>
             </Form>
 
             

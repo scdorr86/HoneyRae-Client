@@ -3,6 +3,7 @@ import { Table } from "reactstrap";
 import { getServiceTickets } from "../../data/serviceTicketsData";
 import { Link } from "react-router-dom";
 import { DeleteTicket } from "./DeleteTicket";
+import { CompleteTicket } from "./CompleteTicket";
 
 export default function TicketsList() {
   const [tickets, setTickets] = useState([]);
@@ -36,6 +37,9 @@ export default function TicketsList() {
             <td>
                     <DeleteTicket ticketObj={t} setTickets={setTickets}></DeleteTicket>
             </td>
+             <td>
+                    <CompleteTicket ticketObj={t} setTickets={setTickets}></CompleteTicket>
+             </td>
           </tr>
         ))}
       </tbody>
