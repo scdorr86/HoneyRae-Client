@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Table } from "reactstrap";
 import { getServiceTicket, getServiceTicketById } from "../../data/serviceTicketsData";
+import { AssignEmployee } from "./AssignBtn";
 
 export default function TicketDetails() {
   const { id } = useParams();
@@ -14,7 +15,7 @@ export default function TicketDetails() {
     };
 
     useEffect(() => { getTicket(); }, [id]);
-
+    console.log("this is the ticket", ticket);
   if (!ticket) {
     return null;
   }
@@ -36,7 +37,7 @@ export default function TicketDetails() {
         </tr>
         <tr>
           <th scope="row">Employee</th>
-          <td>{ticket.employee?.name || "Unassigned"}</td>
+          <td><AssignEmployee ticketObj={ticket}></AssignEmployee></td>          
         </tr>
         <tr>
           <th scope="row">Completed?</th>
