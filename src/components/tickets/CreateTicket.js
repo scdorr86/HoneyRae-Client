@@ -9,10 +9,10 @@ import { getCustomers } from "../../data/customerData";
 
 
 const initialState = {
-    CustomerId: 0,
-    EmployeeId: 0,
-    Description: '',
-    Emergency: false,
+    customerId: 0,
+    employeeId: 0,
+    description: '',
+    emergency: false,
 }
 export default function CreateTicket() {
     const [formInput, setFormInput] = useState(initialState);
@@ -25,7 +25,11 @@ export default function CreateTicket() {
 
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+        if (value === "true")
+            value = true
+        if (value === "false")
+            value = false
         setFormInput((prevState) => ({
             ...prevState,
             [name]: value,
@@ -33,7 +37,7 @@ export default function CreateTicket() {
     };
 
     const handleSubmit = (e) => {
-        
+        e.preventDefault();
         const payload = {
             ...formInput
         };
@@ -49,12 +53,13 @@ export default function CreateTicket() {
             <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label for="Customer Id">Customer Id</Label>
-                    <Input placeholder="customer Id" type="select" name="CustomerId" value={Number(formInput.CustomerId)} onChange={handleChange}>
+                    <Input placeholder="customer Id" type="select" name="customerId" value={formInput.customerId} onChange={handleChange}>
 
+                        <option value="customer">Customer</option>
                         {customers.map((customer) => {
                             console.log("this is cust", customer)
                             return (
-                                <option key={customer.id} value={parseInt(customer.id)}>
+                                <option key={customer.id} value={+customer.id}>
                                     ID: {customer.id} Name: {customer.name}
                                 </option>                           
                             );
@@ -65,8 +70,9 @@ export default function CreateTicket() {
 
                 <FormGroup>
                     <Label for="Employee Id">Employee Id</Label>
-                    <Input placeholder="employee Id" type="select" name="EmployeeId" value={formInput.EmployeeId} onChange={handleChange}>
+                    <Input placeholder="employee Id" type="select" name="employeeId" value={formInput.employeeId} onChange={handleChange}>
 
+                        <option value="Employee">Employee</option>
                         {employees.map((employee) => {
                             console.log("this is employee", employee);
                             return (
@@ -79,7 +85,7 @@ export default function CreateTicket() {
 
                 <FormGroup>
                     <Label for="Description">Description</Label>
-                    <Input placeholder="Description" type="text" name="Description" value={formInput.Description} onChange={handleChange}></Input>
+                    <Input placeholder="Description" type="text" name="description" value={formInput.description} onChange={handleChange}></Input>
                 </FormGroup>
 
                 {/*<FormGroup>*/}
@@ -89,10 +95,11 @@ export default function CreateTicket() {
 
                 <FormGroup>
                     <Label for="Emergency">Emergency Id</Label>
-                    <Input placeholder="Emergency" type="select" name="Emergency" value={formInput.Emergency} onChange={handleChange}>
-                                            
-                        <option key="true" value={true} >Yes</option>
-                        <option key="false" value={false} >No</option>
+                    <Input placeholder="Emergency" type="select" name="emergency" value={formInput.emergency} onChange={handleChange}>
+
+                        <option value="Emergency" >Emergency</option>
+                        <option value={false} >No</option>
+                        <option value={true} >Yes</option>
 
                     </Input>
                 </FormGroup>
