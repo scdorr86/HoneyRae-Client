@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 import { Form, Label, Input, FormGroup } from "reactstrap";
 import { Button } from "reactstrap";
-import { createTicket } from "../../data/serviceTicketsData";
+import { createTicket, getServiceTicketById } from "../../data/serviceTicketsData";
 import { getEmployees } from "../../data/employeeData";
-
+import { useParams } from "react-router-dom";
 
 const initialState = {
     employeeId: 0,
 }
 export default function AssignEmpToTick() {
+    const { id } = useParams();
+
     const [formInput, setFormInput] = useState(initialState);
     const [employees, setEmployees] = useState([]);
+    const [ticket, setTicket] = useState({});
 
+    const getTicket = () => {
+        getServiceTicketById(id).then(setTicket);
+    };
 
     useEffect(() => { getEmployees().then(setEmployees); }, []);
+    useEffect(() => { getTicket(); }, [id]);
+
+    console.log("testing the value of ticket obj", ticket);
    
     const handleChange = (e) => {  
         const { name, value } = e.target;

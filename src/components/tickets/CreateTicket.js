@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form, Label, Input, FormGroup } from "reactstrap";
 import { Button } from "reactstrap";
-import { Link } from "react-router-dom";
-import { createServiceTicket, createTicket } from "../../data/serviceTicketsData";
+import { createTicket } from "../../data/serviceTicketsData";
 import { getEmployees } from "../../data/employeeData";
 import { getCustomers } from "../../data/customerData";
 

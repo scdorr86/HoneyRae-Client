@@ -1,4 +1,5 @@
 import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
 export function AssignEmployee({ ticketObj }) {
     
 
@@ -11,7 +12,7 @@ export function AssignEmployee({ ticketObj }) {
         )
     else {
         return (
-            <Button className="margin-left btn-sm" >Assign Employee</Button>
+            <Link to="/tickets/assign"> <Button className="margin-left btn-sm" >Assign Employee</Button></Link>
         )
     };
 }

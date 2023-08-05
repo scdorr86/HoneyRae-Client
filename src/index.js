@@ -14,6 +14,7 @@ import CustomerDetails from './components/customers/CustomerDetails';
 import EmployeeList from './components/employees/EmployeeList';
 import Employees from './components/employees/Employees';
 import EmployeeDetails from './components/employees/EmployeeDetails';
+import AssignEmpToTick from './components/tickets/AssignEmpForm';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,6 +27,7 @@ root.render(
             <Route index element={<TicketsList />} />
             <Route path=":id" element={<TicketDetails />} />
             <Route path="create" element={<CreateTicket />} />
+            <Route path="assign" element={<AssignEmpToTick />} />
           </Route>
 
           <Route path="customers" element={<Customers />}>
