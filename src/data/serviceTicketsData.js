@@ -47,3 +47,16 @@ export const completeTicket = (payload) => new Promise((resolve, reject) => {
         .catch(reject);
 });
 
+export const updateTicket = (ticketId, payload) => new Promise((resolve, reject) => {
+    fetch(`${_apiUrl}/${ticketId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    })
+        .then((response) => response.json())
+        .then(resolve)
+        .catch(reject);
+});
+

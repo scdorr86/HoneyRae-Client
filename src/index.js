@@ -27,7 +27,7 @@ root.render(
             <Route index element={<TicketsList />} />
             <Route path=":id" element={<TicketDetails />} />
             <Route path="create" element={<CreateTicket />} />
-            <Route path="assign" element={<AssignEmpToTick />} />
+            <Route path="assign/:id" element={<AssignEmpToTick />} />
           </Route>
 
           <Route path="customers" element={<Customers />}>

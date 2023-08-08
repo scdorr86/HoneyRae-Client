@@ -1,8 +1,11 @@
 
 import { completeServiceTicket, completeTicket } from "../../data/serviceTicketsData";
 import { Button } from "reactstrap";
+import { useParams } from "react-router-dom";
 
 export function CompleteTicket({ ticketObj, setTickets }) {
+    const { id } = useParams();
+
     const CompleteThisTicket = () => {
         if (window.confirm(`Complete ${ticketObj.description}?`)) {
             ticketObj.DateCompleted = new Date()

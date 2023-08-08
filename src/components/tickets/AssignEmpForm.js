@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form, Label, Input, FormGroup } from "reactstrap";
 import { Button } from "reactstrap";
-import { createTicket, getServiceTicketById } from "../../data/serviceTicketsData";
+import { getServiceTicketById, updateTicket } from "../../data/serviceTicketsData";
 import { getEmployees } from "../../data/employeeData";
 import { useParams } from "react-router-dom";
 
@@ -37,7 +37,7 @@ export default function AssignEmpToTick() {
         const payload = {
             ...formInput
         };
-        createTicket(payload).then(
+        updateTicket(id, payload).then(
             setFormInput(initialState)
         );
     };
