@@ -34,8 +34,9 @@ export default function AssignEmpToTick() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        ticket.employeeId=formInput.employeeId
         const payload = {
-            ...formInput
+            ...ticket
         };
         updateTicket(id, payload).then(
             setFormInput(initialState)
