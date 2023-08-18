@@ -15,6 +15,7 @@ import EmployeeList from './components/employees/EmployeeList';
 import Employees from './components/employees/Employees';
 import EmployeeDetails from './components/employees/EmployeeDetails';
 import AssignEmpToTick from './components/tickets/AssignEmpForm';
+import CreateEmployee from './components/employees/CreateEmployee';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -39,7 +40,7 @@ root.render(
           <Route path="employees" element={<Employees />}>
                 <Route index element={<EmployeeList />} />
                 <Route path=":id" element={<EmployeeDetails />} />
-                <Route path="create" element={<CreateTicket />} />
+                <Route path="create" element={<CreateEmployee />} />
           </Route>
 
         </Route>

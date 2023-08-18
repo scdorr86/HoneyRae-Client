@@ -8,3 +8,16 @@ export const getEmployees = () => {
 export const getEmployeeById = (id) => {
     return fetch(`${_apiUrl}/${id}`).then((r) => r.json());
 }
+
+export const createEmployee = (payload) => new Promise((resolve, reject) => {
+    fetch(_apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    })
+        .then((response) => response.json())
+        .then((data) => resolve(data))
+        .catch(reject);
+});
