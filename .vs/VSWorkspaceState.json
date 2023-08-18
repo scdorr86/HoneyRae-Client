@@ -3,9 +3,11 @@
     "",
     "\\src",
     "\\src\\components",
+    "\\src\\components\\customers",
     "\\src\\components\\employees",
     "\\src\\components\\tickets",
     "\\src\\data"
   ],
+  "SelectedNode": "\\src\\components\\tickets\\CreateTicket.js",
   "PreviewInSolutionExplorer": false
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { Link } from "react-router-dom";
 import { getEmployees } from "../../data/employeeData";
+import { DeleteEmployee } from "./DeleteEmployee";
 
 export default function EmployeeList() {
     const [employees, setEmployees] = useState([]);
@@ -28,6 +29,9 @@ export default function EmployeeList() {
                         <td>{e.specialty}</td>
                         <td>
                             <Link to={`${e.id}`}>Details</Link>
+                        </td>
+                        <td>
+                            <DeleteEmployee employeeObj={e} setEmployees={setEmployees}></DeleteEmployee>
                         </td>
                     </tr>
                 ))}

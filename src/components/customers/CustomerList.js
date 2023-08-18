@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { getCustomers } from "../../data/customerData";
 import { Link } from "react-router-dom";
+import { DeleteCustomer } from "./DeleteCustomer";
 
 export default function CustomerList() {
     const [customers, setCustomers] = useState([]);
@@ -29,6 +30,9 @@ export default function CustomerList() {
 
                         <td>
                             <Link to={`${c.id}`}>Details</Link>
+                        </td>
+                        <td>
+                            <DeleteCustomer customerObj={c} setCustomers={setCustomers}></DeleteCustomer>
                         </td>
                     </tr>
                 ))}

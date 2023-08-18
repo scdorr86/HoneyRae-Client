@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Form, Label, Input, FormGroup } from "reactstrap";
 import { Button } from "reactstrap";
-import { createEmployee, getEmployees } from "../../data/employeeData";
+import { createCustomer } from "../../data/customerData";
 
 
 const initialState = {
     name: '',
-    specialty: '',
+    address: '',
 }
-export default function CreateEmployee() {
+export default function CreateCustomer() {
     const [formInput, setFormInput] = useState(initialState);
- 
+
     const handleChange = (e) => {
 
         let { name, value } = e.target;
@@ -26,25 +26,25 @@ export default function CreateEmployee() {
         const payload = {
             ...formInput
         };
-        createEmployee(payload).then(
+        createCustomer(payload).then(
             setFormInput(initialState)
         );
     };
 
     return (
         <>
-            < h3 > Create Employee</h3 >
+            < h3 > Create Customer</h3 >
 
             <Form onSubmit={handleSubmit}>
-                
+
                 <FormGroup>
-                    <Label for="Specialty">Specialty</Label>
-                    <Input placeholder="Specialty" type="text" name="specialty" value={formInput.specialty} onChange={handleChange}></Input>
+                    <Label for="Name">Name</Label>
+                    <Input placeholder="Customer Name" type="text" name="name" value={formInput.name} onChange={handleChange}></Input>
                 </FormGroup>
 
                 <FormGroup>
-                    <Label for="Employee Name">Name</Label>
-                    <Input placeholder="Employee Name" type="text" name="name" value={formInput.name} onChange={handleChange}></Input>
+                    <Label for="Address">Address</Label>
+                    <Input placeholder="Customer Address" type="text" name="address" value={formInput.address} onChange={handleChange}></Input>
                 </FormGroup>
 
                 <Button className="btn btn-dark" type="submit" onSubmit={handleSubmit}>Submit</Button>

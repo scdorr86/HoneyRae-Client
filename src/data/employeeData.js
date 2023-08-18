@@ -9,6 +9,10 @@ export const getEmployeeById = (id) => {
     return fetch(`${_apiUrl}/${id}`).then((r) => r.json());
 }
 
+export const deleteEmployee = (id) => {
+    return fetch(`${_apiUrl}/${id}`, { method: "delete" }).then((r) => r.json());
+}
+
 export const createEmployee = (payload) => new Promise((resolve, reject) => {
     fetch(_apiUrl, {
         method: 'POST',
