@@ -10,7 +10,7 @@ export default function CustomerList() {
     useEffect(() => {
         getCustomers().then(setCustomers);
     }, []);
-
+    console.log(customers);
     return (
         <Table>
             <thead>
